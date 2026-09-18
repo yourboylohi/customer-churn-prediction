@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-100 font-sans antialiased;
+  }
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Custom UI cards with restrained SaaS aesthetic */
+.saas-card {
+  @apply bg-slate-900/80 border border-slate-800/80 rounded-xl shadow-lg backdrop-blur-sm transition-all duration-200;
+}
+
+.saas-card-hover {
+  @apply hover:border-slate-700 hover:shadow-glow-sm;
+}
+
+.saas-input {
+  @apply w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-colors duration-150;
+}
+
+.saas-label {
+  @apply block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5;
+}
