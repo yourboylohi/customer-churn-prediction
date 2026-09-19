@@ -1,5 +1,5 @@
 import { CustomerFormData, PredictionResult, EDAStats, ModelMetricsSummary } from '../types/churn';
-
+const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 // Fallback pre-calculated EDA Statistics directly derived from IBM Telco Customer Churn dataset (7043 rows)
 const FALLBACK_EDA_STATS: EDAStats = {
   total_customers: 7043,
@@ -131,7 +131,7 @@ const FALLBACK_METRICS: ModelMetricsSummary = {
 
 export async function fetchEDAStats(): Promise<EDAStats> {
   try {
-    const res = await fetch('/api/stats');
+    const res = await fetch(`${API_BASE_URL}/api/stats`);
     if (!res.ok) throw new Error('API server unavailable');
     return await res.json();
   } catch {
@@ -142,7 +142,7 @@ export async function fetchEDAStats(): Promise<EDAStats> {
 
 export async function fetchModelMetrics(): Promise<ModelMetricsSummary> {
   try {
-    const res = await fetch('/api/metrics');
+    const res = await fetch(`${API_BASE_URL}/api/metrics`);
     if (!res.ok) throw new Error('API server unavailable');
     return await res.json();
   } catch {
@@ -153,7 +153,7 @@ export async function fetchModelMetrics(): Promise<ModelMetricsSummary> {
 
 export async function predictCustomerChurn(customer: CustomerFormData): Promise<PredictionResult> {
   try {
-    const res = await fetch('/api/predict', {
+    const res = await fetch(`${API_BASE_URL}/api/predict`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(customer),
